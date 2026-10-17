@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [filtro, setFiltro] = useState<(typeof categorias)[number]>("Todos");
-  const [mapaId, setMapaId] = useState(destinos[0].id);
+  const [mapaId, setMapaId] = useState("miraflores");
   const lista = useMemo(() => (filtro === "Todos" ? destinos : destinos.filter((d) => d.categoria === filtro)), [filtro]);
   const mapaDestino = destinos.find((d) => d.id === mapaId)!;
 
@@ -190,7 +190,7 @@ function Lista({ items }: { items: string[] }) {
   return <ul className="list-disc space-y-1 pl-5 text-muted-foreground">{items.map((i) => <li key={i}>{i}</li>)}</ul>;
 }
 
-type Msg = { role: "user" | "assistant"; text: string; image?: string };
+type Msg = { role: "user" | "assistant"; text: string; image?: string | undefined };
 
 function Asistente() {
   const preguntar = useServerFn(preguntarAsistente);
