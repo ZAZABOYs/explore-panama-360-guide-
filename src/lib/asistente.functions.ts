@@ -22,7 +22,7 @@ const SYSTEM = `Eres "Guía Panamá", un asistente turístico experto en Panamá
 export const preguntarAsistente = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => Input.parse(d))
   .handler(async ({ data }) => {
-    const key = process.env.LOVABLE_API_KEY;
+    const key = process.env["LOVABLE_API_KEY"];
     if (!key) throw new Error("El asistente no está configurado.");
 
     const messages = [
